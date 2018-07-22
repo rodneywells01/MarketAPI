@@ -6,12 +6,11 @@ Market API with a variety of goals.
 - Leverage the latest Big-Data MachineLearning Hadoop Kubernetes Blockchain technology to transform the world
 
 
-## Installing / Configuring Dev
-Navigate to the root of the project. Then execute:
-```
-pip install -r requirements.txt
-flask run
-```
+## Getting Started
+- Installation
+  - `./initial_install.sh`
+- Run Server 
+  - `./run.sh` 
 
 ## Validating the API is up
 You should leverage the Postman collection for endpoint info.
