@@ -1,3 +1,17 @@
-# Market API 
+# Market API
+Market API with a variety of goals.
 
-The latest and greatest project from Wells and Moring. 
+- Build and maintain a watchlist
+- Generate and offer subscriptions to custom "market reports"
+- Leverage the latest Big-Data MachineLearning Hadoop Kubernetes Blockchain technology to transform the world
+
+
+## Getting Started
+- Installation
+  - `./initial_install.sh`
+- Run Server 
+  - `./run.sh` 
+
+## Validating the API is up
+You should leverage the Postman collection for endpoint info.
+https://documenter.getpostman.com/view/4908870/RWMHKSYP
