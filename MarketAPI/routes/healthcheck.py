@@ -5,4 +5,4 @@ healthcheck = Blueprint('health_check', __name__,
 
 @healthcheck.route('/health')
 def health_check():
-	return ""
+	return jsonify({"status": "Alive"})
