@@ -17,10 +17,18 @@ You should leverage the Postman collection for endpoint info.
 https://documenter.getpostman.com/view/4908870/RWMHKSYP
 
 ## Windows Development Notes
-Line ending formatting in Windows will cause issues in this project. Be sure to normalize the line endings in your git config.
+Line ending formatting in Windows will cause issues in this project. Be sure to normalize the line endings in your git config. You may see a `^M` line ending in your Python code. Lively discussions about this:
+https://help.github.com/articles/dealing-with-line-endings/
+
+Basically do the following:
 
 `git config --global core.autocrlf true`
+`git config core.autocrlf true`
 
 Additionally, hide the malformed line endings from the `git diff` view.
 
 `git config --global core.whitespace cr-at-eol`
+`git config core.whitespace cr-at-eol`
+
+However, this might lead to some annoying reminders. Still exploring this.
+https://stackoverflow.com/questions/5834014/lf-will-be-replaced-by-crlf-in-git-what-is-that-and-is-it-important
