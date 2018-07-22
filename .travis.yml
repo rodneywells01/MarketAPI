@@ -1,3 +1,7 @@
 language: python
+python:
+  - "3.5"
+before_install:
+  - chmod +x scripts/*
 install: ./scripts/initial_install.sh
 build: ./scripts/lint.sh
