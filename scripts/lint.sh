@@ -1,2 +1,1 @@
-pwd
-pylint ../MarketAPI
+pylint MarketAPI
