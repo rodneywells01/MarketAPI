@@ -9,9 +9,18 @@ Market API with a variety of goals.
 ## Getting Started
 - Installation
   - `./initial_install.sh`
-- Run Server 
-  - `./run.sh` 
+- Run Server
+  - `./run.sh`
 
 ## Validating the API is up
 You should leverage the Postman collection for endpoint info.
 https://documenter.getpostman.com/view/4908870/RWMHKSYP
+
+## Windows Development Notes
+Line ending formatting in Windows will cause issues in this project. Be sure to normalize the line endings in your git config.
+
+`git config --global core.autocrlf true`
+
+Additionally, hide the malformed line endings from the `git diff` view.
+
+`git config --global core.whitespace cr-at-eol`
