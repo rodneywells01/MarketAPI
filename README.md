@@ -14,6 +14,5 @@ flask run
 ```
 
 ## Validating the API is up
-You should leverage the Postman collection. Optionally quick and dirty:
-
-```curl 127.0.0.1:5000/health```
+You should leverage the Postman collection for endpoint info.
+https://documenter.getpostman.com/view/4908870/RWMHKSYP
