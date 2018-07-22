@@ -12,6 +12,10 @@ Market API with a variety of goals.
 - Run Server
   - `./run.sh`
 
+### A note on the environment
+Python 3.7 is required for this project.
+https://serverfault.com/questions/918335/best-way-to-run-python-3-7-on-ubuntu-16-04-which-comes-with-python-3-5
+
 ## Validating the API is up
 You should leverage the Postman collection for endpoint info.
 https://documenter.getpostman.com/view/4908870/RWMHKSYP

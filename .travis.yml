@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.5"
+  - "3.7"
 before_install:
   - chmod +x scripts/*
 install: ./scripts/initial_install.sh
@@ -8,4 +8,4 @@ jobs:
   include:
     - stage: Tests
       name: "Static Analyis"
-      script: ./scripts/lint.sh
+      script: python scripts/lint.py
