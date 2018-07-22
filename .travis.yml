@@ -4,4 +4,8 @@ python:
 before_install:
   - chmod +x scripts/*
 install: ./scripts/initial_install.sh
-build: ./scripts/lint.sh
+jobs:
+  include:
+    - stage: Tests
+      name: "Static Analyis"
+      script: ./scripts/lint.sh
