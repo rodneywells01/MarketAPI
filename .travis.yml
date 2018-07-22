@@ -1,0 +1,11 @@
+language: python
+python:
+  - "3.7-dev"
+before_install:
+  - chmod +x scripts/*
+install: ./scripts/initial_install.sh
+jobs:
+  include:
+    - stage: Tests
+      name: "Static Analyis"
+      script: python scripts/lint.py
