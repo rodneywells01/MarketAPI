@@ -1,2 +1,2 @@
-sudo pip install -r requirements.txt
-sudo pip install -e . 
+pip install -r requirements.txt
+pip install -e .
