@@ -1,3 +1,4 @@
 flask
 pylint
 SQLAlchemy==1.2.10
+Flask-PyMongo
