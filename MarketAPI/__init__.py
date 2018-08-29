@@ -14,6 +14,5 @@ APP.config["MONGO_URI"] = "mongodb://localhost:27017/WatchList"
 APP.register_blueprint(healthcheck)
 APP.register_blueprint(users)
 
-
 # Configure DB
 APP.mongo = PyMongo(APP)
