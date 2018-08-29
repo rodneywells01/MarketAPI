@@ -13,7 +13,5 @@ def db_test():
 	"""
 	Testing Database connectivity. Try to grab one user.
 	"""
-	result = bson.dumps(current_app.mongo.db.users.find_one())
-	print(result)
-
+	result = current_app.mongo.db.users.find_one()
 	return jsonify(result)
