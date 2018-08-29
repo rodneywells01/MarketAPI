@@ -1,7 +1,6 @@
 """
 Health check information to verify the API is functioning properly.
 """
-
 from flask import Blueprint, jsonify
 
 healthcheck = Blueprint('health_check', __name__, template_folder='templates')
