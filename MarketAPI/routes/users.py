@@ -17,3 +17,8 @@ def db_test():
 	print(result)
 
 	return jsonify(result)
+
+@users.route('/users')
+def get_users(): 
+	"""
+	"""
