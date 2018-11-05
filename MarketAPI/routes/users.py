@@ -4,7 +4,7 @@ Capture User information
 
 
 from flask import Blueprint, jsonify, current_app
-from bson import json_util as bson
+# from bson import json_util as bson
 
 users = Blueprint('users', __name__, template_folder='templates')
 
