@@ -1,0 +1,1 @@
+PYTHONPATH=. pytest -p no:warnings
