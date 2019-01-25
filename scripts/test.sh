@@ -1,1 +1,1 @@
-PYTHONPATH=. pytest -p no:warnings
+PYTHONPATH=. pytest -p no:warnings --cov MarketAPI
