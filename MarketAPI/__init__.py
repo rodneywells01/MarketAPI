@@ -17,10 +17,10 @@ class JSONEncoder(json.JSONEncoder):
 	Custom JSON Encoder.
 	"""
 
-	# def default(self, o):
-	# 	if isinstance(o, ObjectId):
-	# 		return str(o)
-	# 	return json.JSONEncoder.default(self, o)
+	def default(self, o):
+		if isinstance(o, ObjectId):
+			return str(o)
+		return json.JSONEncoder.default(self, o)
 
 
 def connect_db(app):
@@ -29,8 +29,7 @@ def connect_db(app):
 	"""
 
 	# Configure DB
-	app.config["MONGO_URI"] = "mongodb://localhost:27017/WatchList"
-
+	app.config["MONGO_URI"] = "mongodb://localhost:27017/marketdb"
 	return PyMongo(app)
 
 
@@ -51,10 +50,5 @@ def create_app(config):
 	app.json_encoder = JSONEncoder
 
 	app.mongo = connect_db(app)
-
-	# Debug stuff
-	print(type(app.mongo))
-	print(type(app.mongo.db))
-	print(type(app.mongo.cx))
 
 	return app
