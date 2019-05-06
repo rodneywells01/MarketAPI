@@ -1,6 +1,7 @@
+dist: xenial 
 language: python
 python:
-  - "3.7-dev"
+  - "3.7"
 before_install:
   - chmod +x scripts/*
 install: ./scripts/initial_install.sh
@@ -9,3 +10,5 @@ jobs:
     - stage: Tests
       name: "Static Analyis"
       script: python scripts/lint.py
+    - name: "Unit Tests"
+      script: ./scripts/test.sh
