@@ -1,6 +1,6 @@
 from pylint import epylint
 
-PASSINGSCORE = 9.0
+PASSINGSCORE = 7.0
 
 # Execute pylint test.
 pylint_out, pylint_stderr = epylint.py_run("MarketAPI", return_std=True)

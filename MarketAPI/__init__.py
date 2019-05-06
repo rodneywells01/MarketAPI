@@ -14,8 +14,8 @@ from MarketAPI.routes.users import users
 
 class JSONEncoder(json.JSONEncoder):
     """
-	Custom JSON Encoder.
-	"""
+    Custom JSON Encoder.
+    """
 
     def default(self, o):
         if isinstance(o, ObjectId):
@@ -25,8 +25,8 @@ class JSONEncoder(json.JSONEncoder):
 
 def connect_db(app):
     """
-	Given an App, connect to a mongo db.
-	"""
+    Given an App, connect to a mongo db.
+    """
 
     # Configure DB
     app.config["MONGO_URI"] = "mongodb://localhost:27017/marketdb"
@@ -35,8 +35,8 @@ def connect_db(app):
 
 def create_app(config):
     """
-	Given a configuration, create a MarketAPI Application
-	"""
+    Given a configuration, create a MarketAPI Application
+    """
 
     # TESTing = True, Database = DB PAth
     app = Flask(__name__)
