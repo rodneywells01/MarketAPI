@@ -1,5 +1,2 @@
-[BASIC]
-indent-string="	"
-
 [MESSAGES CONTROL]
 disable=C0103
