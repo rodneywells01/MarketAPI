@@ -19,7 +19,7 @@ class Watchlist:
         }
 
     def add_ticker(ticker): 
-        
+        pass
 
     def remove_ticker(ticker): 
         self.tickers.remove(ticker)
