@@ -3,7 +3,8 @@ import tempfile
 import pytest
 from mock import Mock
 
-from MarketAPI import create_app, connect_db
+from marketAPI import create_app
+from marketAPI import create_app, connect_db
 
 
 @pytest.fixture

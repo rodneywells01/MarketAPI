@@ -3,7 +3,7 @@ import tempfile
 import pytest
 from mock import Mock
 
-from MarketAPI import create_app, connect_db
+from marketAPI import create_app, connect_db
 
 # https://github.com/pallets/flask/blob/1.0.2/examples/tutorial/tests/conftest.py
 @pytest.fixture

@@ -1,9 +1,9 @@
 import os
 
-class BaseConfig: 
+class BaseConfig:
 	iex_token = os.getenv("IEX_TOKEN")
 
-class DevConfig(BaseConfig): 
+class DevConfig(BaseConfig):
 	iex_base = "https://sandbox.iexapis.com/v1"
 
 class ProdConfig(BaseConfig):
