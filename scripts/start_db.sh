@@ -1,3 +1,0 @@
-sudo service mongodb start
-
-

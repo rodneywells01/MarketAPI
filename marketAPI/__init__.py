@@ -8,9 +8,8 @@ from flask_pymongo import PyMongo
 
 from bson import ObjectId
 
-from MarketAPI.routes.healthcheck import healthcheck
-from MarketAPI.routes.users import users
-
+from marketAPI.routes.healthcheck import healthcheck
+from marketAPI.routes.users import users
 
 class JSONEncoder(json.JSONEncoder):
     """

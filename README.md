@@ -22,7 +22,7 @@ https://documenter.getpostman.com/view/4908870/RWMHKSYP
 
 ## Windows Development Notes
 
-Developing for Windows may pose some struggles.
+Developing for Windows may pose some struggles. Reach out to Rodney Wells for advice
 
 ### Python File Line Ending Formats
 Line ending formatting in Windows will cause issues in this project. Be sure to normalize the line endings in your git config. You may see a `^M` line ending in your Python code. Lively discussions about this:

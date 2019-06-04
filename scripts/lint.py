@@ -3,7 +3,7 @@ from pylint import epylint
 PASSINGSCORE = 7.0
 
 # Execute pylint test.
-pylint_out, pylint_stderr = epylint.py_run("MarketAPI", return_std=True)
+pylint_out, pylint_stderr = epylint.py_run("marketAPI", return_std=True)
 results = pylint_out.getvalue()
 if pylint_stderr.getvalue():
     raise Exception(f"Error evaluating pylint: {pylint_stderr.getvalue()}")
