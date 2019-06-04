@@ -1,10 +1,23 @@
+"""
+Class based configuration values for various environments.
+"""
+
 import os
 
 class BaseConfig:
-	iex_token = os.getenv("IEX_TOKEN")
+    """
+    Base Configuration
+    """
+    iex_token = os.getenv("IEX_TOKEN")
 
 class DevConfig(BaseConfig):
-	iex_base = "https://sandbox.iexapis.com/v1"
+    """
+    Dev Configuration
+    """
+    iex_base = "https://sandbox.iexapis.com/v1"
 
 class ProdConfig(BaseConfig):
-	iex_base = "https://cloud.iexapis.com/v1"
+    """
+    Prod Configuration
+    """
+    iex_base = "https://cloud.iexapis.com/v1"
