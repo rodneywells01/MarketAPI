@@ -13,11 +13,14 @@ class BaseConfig:
 
     def build_config_dictionary(self):
         """
-        Fetch all values in the Config to generate a dictionary of configuration values
+        Fetch all values in the Config to generate a dictionary
+        of configuration values
         """
 
-        members = inspect.getmembers(self, lambda a:not(inspect.isroutine(a)))
-        return dict([attribute for attribute in members if (attribute[0][:2] != "__")])
+        members = inspect.getmembers(self, lambda a: not inspect.isroutine(a))
+        return dict(
+            [attribute for attribute in members if attribute[0][:2] != "__"]
+        )
 
 class LocalConfig(BaseConfig):
     """
