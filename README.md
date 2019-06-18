@@ -49,3 +49,10 @@ Installation:
 
 Usage:
 `dos2unix filename`
+
+## Local Database Development.
+
+We're using MongoDB for our database solution. `mongo-express` lets us easily interact with the database locally.
+https://hub.docker.com/_/mongo-express
+
+Visit http://localhost:8081/ once the container is standing.

@@ -1,4 +1,9 @@
 flask
+flask_cors==3.0.8
 pyEX==0.1.13
 SQLAlchemy==1.2.10
 Flask-PyMongo
+pymongo
+werkzeug==0.15.4
+markupsafe==1.1.1
+jinja2==2.10.1
