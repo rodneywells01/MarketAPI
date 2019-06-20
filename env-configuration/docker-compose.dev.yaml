@@ -1,0 +1,5 @@
+version: '3'
+services:
+  api:
+    environment:
+      - DEPLOYMENT_ENV=dev
