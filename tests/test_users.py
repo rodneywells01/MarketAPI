@@ -3,8 +3,7 @@ import tempfile
 import pytest
 from mock import Mock
 
-from marketAPI import create_app
-from marketAPI import create_app, connect_db
+import marketAPI
 
 
 @pytest.fixture
@@ -16,10 +15,10 @@ def client():
     # create a temporary file to isolate the database for each test
     db_fd, db_path = tempfile.mkstemp()
 
-    connect_db = Mock(return_value=None)
+    marketAPI.connect_db = Mock(return_value=None)
 
     # create the app with common test config
-    app = create_app({"TESTING": True, "DATABASE": db_path})
+    app = marketAPI.create_app({"TESTING": True, "DATABASE": db_path})
 
     # Mocked DB Responses
     app.mongo = Mock(

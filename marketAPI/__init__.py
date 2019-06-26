@@ -10,6 +10,7 @@ from bson import ObjectId
 
 from marketAPI.routes.healthcheck import healthcheck
 from marketAPI.routes.users import users
+from marketAPI.errors import *
 
 class JSONEncoder(json.JSONEncoder):
     """
