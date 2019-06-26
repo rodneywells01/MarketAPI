@@ -1,10 +1,9 @@
 import os
 import tempfile
 import pytest
-from mock import Mock
+from mock import Mock, MagicMock
 
 import marketAPI
-
 
 @pytest.fixture
 def client():
@@ -37,6 +36,7 @@ def client():
     os.close(db_fd)
     os.unlink(db_path)
 
+from tests.general_fixtures.app import client
 
 def test_get_user(client):
     result = client.get("/test")

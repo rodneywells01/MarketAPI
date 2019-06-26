@@ -1,0 +1,34 @@
+version: '3'
+services:
+  api:
+    build: .
+    ports:
+    - "5000:5000"
+    volumes:
+    - .:/code
+    - logvolume01:/var/log
+    container_name: market-api
+    environment:
+      - DEPLOYMENT_ENV=local
+  mongodb:
+    image: mongo:3.4.0
+    restart:  always
+    ports:
+      - 27017:27107
+    volumes:
+      - ./data:/data/db
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+    #   ME_CONFIG_MONGODB_ADMINUSERNAME: root
+    #   ME_CONFIG_MONGODB_ADMINPASSWORD: example
+volumes:
+  logvolume01: {}
