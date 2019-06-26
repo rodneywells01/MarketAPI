@@ -3,7 +3,8 @@ Configure API and routes.
 """
 from pymongo import MongoClient
 import json
-from flask import Flask
+
+from flask_api import FlaskAPI
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 from urllib.parse import quote_plus
@@ -14,7 +15,6 @@ from marketAPI.config import *
 
 from marketAPI.routes.healthcheck import healthcheck
 from marketAPI.routes.users import users
-from marketAPI.errors import *
 
 class JSONEncoder(json.JSONEncoder):
     """
@@ -71,7 +71,7 @@ def create_app(config):
     """
 
     # Configure the application
-    app = Flask(__name__)
+    app = FlaskAPI(__name__)
     target_env = os.getenv("DEPLOYMENT_ENV")
     set_configuration(app, target_env)
     CORS(app)
@@ -79,6 +79,7 @@ def create_app(config):
     # Configure app routing
     app.register_blueprint(healthcheck)
     app.register_blueprint(users)
+
     app.json_encoder = JSONEncoder
 
     # Configure the Database

@@ -5,6 +5,8 @@ Capture User information
 from flask import Blueprint, jsonify, current_app, request, abort
 from marketAPI.errors import *
 # from bson import json_util as bson
+from flask_api import FlaskAPI, status, exceptions
+
 
 users = Blueprint("users", __name__, template_folder="templates")
 
@@ -15,20 +17,20 @@ def create_user():
     # Register a user in our database.
     username = req.get("username")
     if username is None:
-        raise NotFoundError(f"`username` was not specified in body!")
+        raise exceptions.NotFound(f"`username` was not specified in body!")
 
     current_app.mongo.db.users.insert_one({"username": username})
 
-@users.route("/user", methods=["GET"])
-def get_user():
-    req = request.get_json()
+    return jsonify(), 201
 
-    # Find a user in our database.
-    username = req.get("username")
+@users.route("/user/<username>", methods=["GET"])
+def get_user(username):
     if username is None:
-        raise NotFoundError(f"`username` was not specified in body!")
+        raise exceptions.ParseError("`username` not provided!")
     user_data = current_app.mongo.db.users.find_one({"username": username})
 
+    if user_data is None:
+        raise exceptions.NotFound(f"User {username} not found in users table")
     return jsonify(user_data)
 
 

@@ -12,3 +12,4 @@ def health_check():
 	Verify API is alive
 	"""
     return jsonify({"status": "Alive"})
+
