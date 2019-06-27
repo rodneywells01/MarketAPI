@@ -27,6 +27,7 @@ class LocalConfig(BaseConfig):
     Local Configuration
     """
     iex_base = "https://sandbox.iexapis.com/v1"
+    iex_token = "xxx"
     mongo_uri = "mongodb://mongodb:27017"
     db_conn_str = "mongodb://mongodb:27017"
 

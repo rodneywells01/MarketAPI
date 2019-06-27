@@ -1,8 +1,8 @@
 """
 Configure API and routes.
 """
-from pymongo import MongoClient
 import json
+from pymongo import MongoClient
 
 from flask_api import FlaskAPI
 from flask_cors import CORS
@@ -15,6 +15,9 @@ from marketAPI.config import *
 
 from marketAPI.routes.healthcheck import healthcheck
 from marketAPI.routes.users import users
+from marketAPI.routes.market import market
+
+from marketAPI.services.MarketData import MarketData
 
 class JSONEncoder(json.JSONEncoder):
     """
@@ -79,10 +82,14 @@ def create_app(config):
     # Configure app routing
     app.register_blueprint(healthcheck)
     app.register_blueprint(users)
+    app.register_blueprint(market)
 
     app.json_encoder = JSONEncoder
 
     # Configure the Database
     app.mongo = connect_db(app)
+
+    # Configure Services
+    app.market_data = MarketData(app.config)
 
     return app
