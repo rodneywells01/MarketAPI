@@ -11,5 +11,4 @@ from tests.general_fixtures.app import client
 
 def test_healthcheck(client):
     response = client.get("/health")
-    print("Hello")
     assert response.status_code == 200

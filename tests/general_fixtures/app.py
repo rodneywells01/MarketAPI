@@ -20,7 +20,7 @@ def client():
     db_fd, db_path = tempfile.mkstemp()
 
     marketAPI.connect_db = MagicMock(return_value=None)
-    marketAPI.set_configuration = MagicMock()
+    # marketAPI.set_configuration = MagicMock()
 
     # create the app with common test config
     app = marketAPI.create_app({"TESTING": True, "DATABASE": db_path})
@@ -36,6 +36,10 @@ def client():
         )
     )
 
+    # app.config = {
+    #     "iex_base": "",
+    #     "iex_token": ""
+    # }
     yield app.test_client()
 
     # close and remove the temporary database

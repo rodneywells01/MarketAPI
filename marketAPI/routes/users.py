@@ -18,7 +18,7 @@ def create_user():
     # Register a user in our database.
     username = req.get("username")
     if username is None:
-        raise exceptions.NotFound(f"`username` was not specified in body!")
+        raise exceptions.ParseError(f"`username` was not specified in body!")
 
     current_app.mongo.db.users.insert_one({"username": username})
 
