@@ -2,10 +2,12 @@
 Watchlist class
 """
 
+
 class Watchlist:
     """
     Watchlist for stock info
     """
+
     def __init__(self, watchlist_name, owner_id, tickers=[]):
         self.watchlist_name = watchlist_name
         self.tickers = tickers
@@ -15,7 +17,7 @@ class Watchlist:
         return {
             "watchlist_name": self.watchlist_name,
             "tickers": self.tickers,
-            "owner_id": self.owner_id
+            "owner_id": self.owner_id,
         }
 
     def add_ticker(self, ticker):

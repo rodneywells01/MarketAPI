@@ -1,5 +1,6 @@
 import requests
 
+
 class MarketData:
     def __init__(self, config):
         self.url = config["iex_base"]

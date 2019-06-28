@@ -2,14 +2,16 @@
 Capture User information
 """
 
-from flask import Blueprint, jsonify, current_app, request, abort
+from flask import Blueprint, jsonify, current_app, request
+
 # from bson import json_util as bson
-from flask_api import FlaskAPI, status, exceptions
+from flask_api import status, exceptions
 
 from marketAPI import utilities
 
 
 users = Blueprint("users", __name__, template_folder="templates")
+
 
 @users.route("/user", methods=["POST"])
 def create_user():
@@ -24,6 +26,7 @@ def create_user():
 
     return jsonify(), 201
 
+
 @users.route("/user/<username>", methods=["GET"])
 def get_user(username):
     if username is None:
@@ -34,17 +37,19 @@ def get_user(username):
         raise exceptions.NotFound(f"User {username} not found in users table")
     return jsonify(user_data)
 
+
 @users.route("/user/<username>/watchlists", methods=["GET"])
 def get_watchlists(username):
     """
     Get all watchlists for a user
     """
-    if not current_app.mongo.db.users.find_one({ "username": username }):
+    if not current_app.mongo.db.users.find_one({"username": username}):
         raise exceptions.NotFound(f"User {username} does not exist")
 
     user = current_app.mongo.db.users.find_one({"username": username})
     # .get("watchlists")
     return jsonify({"watchlists": user.get("watchlists")})
+
 
 @users.route("/user/<username>/watchlists/<watchlist_name>", methods=["GET"])
 def get_watchlist(username, watchlist_name):
@@ -60,14 +65,17 @@ def _get_watchlist(username, watchlist_name):
     """
     Attempt to fetch a specific watchlist from a user
     """
-    if not current_app.mongo.db.users.find_one({ "username": username }):
+    if not current_app.mongo.db.users.find_one({"username": username}):
         raise exceptions.NotFound(f"User {username} does not exist")
 
-    record = current_app.mongo.db.users.find_one({"username": username, "watchlists.watchlist_name": watchlist_name})
+    record = current_app.mongo.db.users.find_one(
+        {"username": username, "watchlists.watchlist_name": watchlist_name}
+    )
     if not record:
         raise exceptions.NotFound(f"Watchlist {watchlist_name} not found")
 
     return record["watchlists"][0]
+
 
 @users.route("/user/<username>/watchlists", methods=["POST"])
 def create_watchlist(username):
@@ -83,18 +91,10 @@ def create_watchlist(username):
     except exceptions.NotFound:
         print("Creating watchlist for user")
 
-    watchlist = {
-        "watchlist_name": watchlist_name,
-        "ticker_list": ticker_list
-    }
+    watchlist = {"watchlist_name": watchlist_name, "ticker_list": ticker_list}
 
     current_app.mongo.db.users.update(
-        {"username": username },
-        {
-            "$set": {
-                "watchlists": [watchlist]
-            }
-        }
+        {"username": username}, {"$set": {"watchlists": [watchlist]}}
     )
 
     return jsonify(), 201

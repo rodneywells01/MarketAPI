@@ -20,6 +20,7 @@ from marketAPI.routes.market import market
 
 from marketAPI.services.MarketData import MarketData
 
+
 class JSONEncoder(json.JSONEncoder):
     """
     Custom JSON Encoder.
@@ -57,11 +58,11 @@ def generate_config(environment):
 
     print(f"Deploying to {environment}")
     environment = environment.lower()
-    if environment == 'local':
+    if environment == "local":
         return LocalConfig().build_config_dictionary()
-    elif environment == 'dev':
+    elif environment == "dev":
         return DevConfig().build_config_dictionary()
-    elif environment == 'prod':
+    elif environment == "prod":
         return ProdConfig().build_config_dictionary()
     else:
         raise ValueError(f"INVALID CONFIGURATION PROVIDED: {environment}")

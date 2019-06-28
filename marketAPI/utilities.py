@@ -1,5 +1,6 @@
 from flask_api import exceptions
 
+
 def get_from_req(request, value):
     """
     Get a value from a request
