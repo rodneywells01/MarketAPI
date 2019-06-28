@@ -2,6 +2,7 @@
 Configure API and routes.
 """
 import json
+import os
 from pymongo import MongoClient
 
 from flask_api import FlaskAPI
@@ -46,26 +47,24 @@ def connect_db(app):
     return PyMongo(app)
 
 
-def set_configuration(app, environment):
+def generate_config(environment):
     """
     Based on the environment, select a config class from config.py
     Config is stored in app.config
     """
     if environment is None:
-        app.logger.info(environment)
         raise ValueError("Environment is None. Is `DEPLOYMENT_ENV` env var set?")
 
-    app.logger.info(f"Deploying to {environment}")
+    print(f"Deploying to {environment}")
     environment = environment.lower()
     if environment == 'local':
-        app.config.update(LocalConfig().build_config_dictionary())
+        return LocalConfig().build_config_dictionary()
     elif environment == 'dev':
-        app.config.update(DevConfig().build_config_dictionary())
+        return DevConfig().build_config_dictionary()
     elif environment == 'prod':
-        app.config.update(ProdConfig().build_config_dictionary())
+        return ProdConfig().build_config_dictionary()
     else:
         raise ValueError(f"INVALID CONFIGURATION PROVIDED: {environment}")
-    app.logger.info(app.config)
 
 
 def create_app(config):
@@ -76,7 +75,7 @@ def create_app(config):
     # Configure the application
     app = FlaskAPI(__name__)
     target_env = os.getenv("DEPLOYMENT_ENV")
-    set_configuration(app, target_env)
+    app.config.update(generate_config(app, target_env))
     CORS(app)
 
     # Configure app routing
