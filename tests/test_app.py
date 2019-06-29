@@ -9,10 +9,9 @@ import marketAPI
 def test_configuration():
     fake_app = MagicMock()
     for env in ["local", "dev", "prod"]:
-        marketAPI.set_configuration(fake_app, env)
-        assert fake_app.config.update.called
+        marketAPI.generate_config(env)
 
 def test_configuration_bad_env():
     fake_app = MagicMock()
     with pytest.raises(ValueError):
-        marketAPI.set_configuration(fake_app, "nonexistent_env")
+        marketAPI.generate_config("nonexistent_env")

@@ -7,6 +7,7 @@ import os
 import pytest
 
 from mock import MagicMock
+from marketAPI.config import LocalConfig
 
 import marketAPI
 
@@ -19,8 +20,12 @@ def client():
     # create a temporary file to isolate the database for each test
     db_fd, db_path = tempfile.mkstemp()
 
+    os.getenv = MagicMock()
+
     marketAPI.connect_db = MagicMock(return_value=None)
-    marketAPI.set_configuration = MagicMock()
+    marketAPI.generate_config = MagicMock(
+        return_value=LocalConfig().build_config_dictionary()
+    )
 
     # create the app with common test config
     app = marketAPI.create_app({"TESTING": True, "DATABASE": db_path})
@@ -36,6 +41,10 @@ def client():
         )
     )
 
+    # app.config = {
+    #     "iex_base": "",
+    #     "iex_token": ""
+    # }
     yield app.test_client()
 
     # close and remove the temporary database

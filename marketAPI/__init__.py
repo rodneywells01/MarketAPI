@@ -1,9 +1,11 @@
 """
 Configure API and routes.
 """
-from pymongo import MongoClient
 import json
-from flask import Flask
+import os
+from pymongo import MongoClient
+
+from flask_api import FlaskAPI
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 from urllib.parse import quote_plus
@@ -14,6 +16,10 @@ from marketAPI.config import *
 
 from marketAPI.routes.healthcheck import healthcheck
 from marketAPI.routes.users import users
+from marketAPI.routes.market import market
+
+from marketAPI.services.MarketData import MarketData
+
 
 class JSONEncoder(json.JSONEncoder):
     """
@@ -42,26 +48,24 @@ def connect_db(app):
     return PyMongo(app)
 
 
-def set_configuration(app, environment):
+def generate_config(environment):
     """
     Based on the environment, select a config class from config.py
     Config is stored in app.config
     """
     if environment is None:
-        app.logger.info(environment)
         raise ValueError("Environment is None. Is `DEPLOYMENT_ENV` env var set?")
 
-    app.logger.info(f"Deploying to {environment}")
+    print(f"Deploying to {environment}")
     environment = environment.lower()
-    if environment == 'local':
-        app.config.update(LocalConfig().build_config_dictionary())
-    elif environment == 'dev':
-        app.config.update(DevConfig().build_config_dictionary())
-    elif environment == 'prod':
-        app.config.update(ProdConfig().build_config_dictionary())
+    if environment == "local":
+        return LocalConfig().build_config_dictionary()
+    elif environment == "dev":
+        return DevConfig().build_config_dictionary()
+    elif environment == "prod":
+        return ProdConfig().build_config_dictionary()
     else:
         raise ValueError(f"INVALID CONFIGURATION PROVIDED: {environment}")
-    app.logger.info(app.config)
 
 
 def create_app(config):
@@ -70,17 +74,22 @@ def create_app(config):
     """
 
     # Configure the application
-    app = Flask(__name__)
+    app = FlaskAPI(__name__)
     target_env = os.getenv("DEPLOYMENT_ENV")
-    set_configuration(app, target_env)
+    app.config.update(generate_config(app, target_env))
     CORS(app)
 
     # Configure app routing
     app.register_blueprint(healthcheck)
     app.register_blueprint(users)
+    app.register_blueprint(market)
+
     app.json_encoder = JSONEncoder
 
     # Configure the Database
     app.mongo = connect_db(app)
+
+    # Configure Services
+    app.market_data = MarketData(app.config)
 
     return app

@@ -1,9 +1,10 @@
 import requests
 
+
 class MarketData:
     def __init__(self, config):
-        self.url = config.iex_base
-        self.token = config.iex_token
+        self.url = config["iex_base"]
+        self.token = config["iex_token"]
 
     def _request(self, route):
         target = self.url + route + f"?token={self.token}"
@@ -18,4 +19,4 @@ class MarketData:
         return self._request(route)
 
     def fetch_price(self, ticker):
-        pass
+        return self._request(f"/stock/{ticker}/price")
