@@ -76,7 +76,7 @@ def create_app(config):
     # Configure the application
     app = FlaskAPI(__name__)
     target_env = os.getenv("DEPLOYMENT_ENV")
-    app.config.update(generate_config(app, target_env))
+    app.config.update(generate_config(target_env))
     CORS(app)
 
     # Configure app routing
