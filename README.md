@@ -20,7 +20,7 @@ Ultimately, it'll be running in a docker container, but you should still get the
 ## Manually Interacting with the API
 You should get Postman to play with the API endpoints.
 - [Get Postman](https://www.getpostman.com/)
-- [MarketAPI Postman Endpoint Collection](https://documenter.getpostman.com/view/4908870/RWMHKSYP)
+- [MarketAPI Postman Endpoint Collection](https://documenter.getpostman.com/view/4908870/SVmtxzVL?version=latest)
 
 ## Windows Development Notes
 Developing for Windows may pose some struggles. Reach out to Rodney Wells for advice. He will try to help you but may bamboozle you as a born-again Mac user.
