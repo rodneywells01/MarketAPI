@@ -7,4 +7,4 @@ Flask-API
 pymongo
 werkzeug==0.15.4
 markupsafe==1.1.1
-jinja2==2.10.1
+jinja2==2.11.3
