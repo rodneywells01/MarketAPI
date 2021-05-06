@@ -1,5 +1,5 @@
 flask
-flask_cors==3.0.8
+flask_cors==3.0.9
 pyEX==0.1.13
 SQLAlchemy>=1.3.0
 Flask-PyMongo
